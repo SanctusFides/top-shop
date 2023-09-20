@@ -4,7 +4,9 @@
   align-items: center;
   border: 1px black solid;
   border-radius: 8px;
-  width: 10rem;
+  width: 12rem;
+  min-height: 220px;
+  padding: 1rem .25rem;
 }
 
 .thumbnail{
