@@ -4,8 +4,6 @@ import HomePage from './Components/HomePage/HomePage'
 import Nbar from './Components/Nbar/Nbar'
 
 function App() {
-
-  
   const [cart, setCart] = useState([]);
 
   function handleAddToCart(newItem) {
