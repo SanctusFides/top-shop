@@ -1,0 +1,13 @@
+.checkoutCard{
+  display: flex;
+  height: 5rem;
+}
+
+.checkoutImage {
+  height: 100%;
+}
+
+.checkoutDetails{
+   display: flex;
+   align-items: flex-start;
+}

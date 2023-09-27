@@ -22,7 +22,7 @@ export default function Checkout({ cart }) {
           <h3>Your Cart Empty</h3>
         }
         
-        { cartCopy.length > 0 &&
+        { cart.length > 0 &&
         <>
           <ul>
             {cart &&

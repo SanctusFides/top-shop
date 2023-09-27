@@ -4,7 +4,7 @@ import ItemCardCSS from "./ItemCard.module.css";
 export default function ItemCard({ id, title, price, image, handleAddToCart }) {
 
 
-  const item = { id: id, title: title, price: price };
+  const item = { id: id, title: title, price: price, image: image};
 
 
   // NEED TO HANDLE PRICES THAT COME IN A TENS PLACE DECIMAL VALUE ONLY
