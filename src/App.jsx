@@ -1,14 +1,8 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import './App.css'
 import HomePage from './Components/HomePage/HomePage'
-import Nbar from './Components/Nbar/Nbar'
 
-function App() {
-  const [cart, setCart] = useState([]);
-
-  function handleAddToCart(newItem) {
-    setCart([...cart, newItem]);
-  }
+function App({cart, handleAddToCart}) {
 
   // This is for testing the cart
   const printCart = async () => {
@@ -23,8 +17,7 @@ function App() {
 
   return (
     <>
-     <Nbar cart={cart}/>
-     <HomePage handleAddToCart={handleAddToCart}/>
+     <HomePage cart={cart} handleAddToCart={handleAddToCart}/>
      <button onClick={printCart}>PRINT</button>
     </>
   )

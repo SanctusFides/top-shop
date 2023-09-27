@@ -2,23 +2,8 @@ import NavCSS from "./Nbar.module.css";
 import cartSVG from "./cart.svg";
 import { Link } from "react-router-dom";
 
-export default function Nbar({ cart }) {
-  const CATEGORY = {
-    electronics: "electronics",
-    jewelry: "jewelery",
-    mens: "men's clothing",
-    womens: "women's clothing"
-  };
-
-  // const location = {
-  //   pathname: '/category',
-  //   state: {result : "Test"}
-  // }
-
-
+export default function Nbar({cart}) {
   
-  const cartCopy = [...cart];
-
   return (
     <nav className={NavCSS.bar}>
       <ul className={NavCSS.leftSide}>
@@ -30,17 +15,21 @@ export default function Nbar({ cart }) {
         </li>
 
         <li>
-            <Link to={location}>Men&apos;s Clothes</Link>
+          <Link to={"/store"} cart={cart}>
+            <button className={NavCSS.link}>Store</button>
+          </Link>
         </li>
 
       </ul>
 
       <ul className="right-side">
         <li className={NavCSS.userButtons}>
-          <button className={NavCSS.cart}>
-            <img src={cartSVG} />
-            {cartCopy.length}
-          </button>
+          <Link to={"/checkout"} cart={cart}>
+            <button className={NavCSS.cart}>
+              <img src={cartSVG} />
+              {cart.length}
+            </button>
+          </Link>
         </li>
       </ul>
     </nav>

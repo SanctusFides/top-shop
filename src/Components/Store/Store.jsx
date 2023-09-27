@@ -1,24 +1,28 @@
+import useFetch from "react-fetch-hook";
 import ItemCard from "../ItemCard/ItemCard";
 import Nbar from "../Nbar/Nbar";
-import HomeCSS from "./HomePage.module.css";
-import useFetch from "react-fetch-hook";
+import StoreCSS from "./Store.module.css";
 
-export default function HomePage({ cart, handleAddToCart }) {
+export default function Store({ cart, handleAddToCart }) {
+  // const categoryURL = "";
+  // console.log(category);
+
   const { isLoading, data, error } = useFetch(
-    "https://fakestoreapi.com/products?limit=6"
+    // "https://fakestoreapi.com/products/category/${category}"
+    "https://fakestoreapi.com/products?limit=18"
   );
 
   return (
     <>
-      <Nbar cart={cart}/>
-      <div className={HomeCSS.homeBody}>
+      <Nbar cart={cart} />
+      <div className={StoreCSS.homeBody}>
         <h1>BROWSE OUR WARES</h1>
         {isLoading && <div>Loading...</div>}
         {error && <div>{`There was an issue loading data - ${error}`}</div>}
-        <ul className={HomeCSS.recommends}>
+        <ul className={StoreCSS.recommends}>
           {data &&
             data.map(({ id, title, price, image }) => (
-              <li key={id}>
+              <li key={id} className={StoreCSS.card}>
                 <ItemCard
                   id={id}
                   title={title}
