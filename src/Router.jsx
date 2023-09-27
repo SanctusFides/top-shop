@@ -7,6 +7,8 @@ import { useState } from "react";
 const Router = () => {
   const [cart, setCart] = useState([]);
 
+  // UPDATE ADD TO CART HANDLER - need to check for ID, if so update quanitity of that value
+
   function handleAddToCart(newItem) {
     setCart([...cart, newItem]);
   }

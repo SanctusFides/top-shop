@@ -4,11 +4,8 @@ import Nbar from "../Nbar/Nbar";
 import StoreCSS from "./Store.module.css";
 
 export default function Store({ cart, handleAddToCart }) {
-  // const categoryURL = "";
-  // console.log(category);
 
   const { isLoading, data, error } = useFetch(
-    // "https://fakestoreapi.com/products/category/${category}"
     "https://fakestoreapi.com/products?limit=18"
   );
 
