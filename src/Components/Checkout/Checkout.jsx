@@ -7,14 +7,16 @@ export default function Checkout({
   handleDelete,
   increaseQuantity,
   decreaseQuantity,
+  orderTotal,
+  submitOrder,
 }) {
   const cartCopy = [...cart];
-  let orderTotal = 0;
-  if (cartCopy.length > 0) {
-    cartCopy.forEach((item) => (orderTotal += item.price));
-  }
 
-  console.log(cartCopy);
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
 
   return (
     <>
@@ -31,7 +33,7 @@ export default function Checkout({
               {cart &&
                 cart.map(
                   (
-                    { id, title, price, image, quantity } // NEED TO ADD QUANTITY FIELD TO THIS AND PASS IT THROUGH TO CHECKOUT CARD
+                    { id, title, price, image, quantity }
                   ) => (
                     <li key={id}>
                       <CheckoutCard
@@ -49,7 +51,8 @@ export default function Checkout({
                 )}
             </ul>
 
-            <h3>ORDER TOTAL: {orderTotal}</h3>
+            <h3>ORDER TOTAL: {formatter.format(orderTotal)}</h3>
+            <button onClick={submitOrder}>Submit Order</button>
           </>
         )}
       </div>

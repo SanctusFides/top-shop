@@ -3,6 +3,11 @@ import cartSVG from "./cart.svg";
 import { Link } from "react-router-dom";
 
 export default function Nbar({cart}) {
+
+  let cartQuantityTotal = 0
+  cart.forEach(item => {
+    cartQuantityTotal += item.quantity
+  });
   
   return (
     <nav className={NavCSS.bar}>
@@ -16,7 +21,7 @@ export default function Nbar({cart}) {
 
         <li>
           <Link to={"/store"} cart={cart}>
-            <button className={NavCSS.link}>Store</button>
+            <button className={NavCSS.link}>Shop</button>
           </Link>
         </li>
 
@@ -27,7 +32,7 @@ export default function Nbar({cart}) {
           <Link to={"/checkout"} cart={cart}>
             <button className={NavCSS.cart}>
               <img src={cartSVG} />
-              {cart.length}
+              {cartQuantityTotal}
             </button>
           </Link>
         </li>
