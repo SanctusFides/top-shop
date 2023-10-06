@@ -10,4 +10,16 @@
 .checkoutDetails{
    display: flex;
    align-items: flex-start;
+   gap: 1rem;
+}
+
+.checkoutbtns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quantity{
+  max-width: 2.5rem;
+  text-align: center;
 }

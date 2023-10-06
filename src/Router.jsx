@@ -5,17 +5,15 @@ import Checkout from "./Components/Checkout/Checkout";
 import { useState } from "react";
 
 const Router = () => {
-
   // I AM SETTING STATES IN ROUTER BECAUSE THE CART AND ORDER TOTAL NEED TO BE STORED ON THE HIGHEST LEVEL AND PASSED DOWN
   // I assume this is maybe not the most normal way to handle this, but it sure is efficient and works
   const [cart, setCart] = useState([]);
-  const [orderTotal, setOrderTotal] = useState(0)
+  const [orderTotal, setOrderTotal] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  
-// Function handles taking in an item, checking if it's already in the cart and if so just increase the quantity by 1
+  // Function handles taking in an item, checking if it's already in the cart and if so just increase the quantity by 1
   function handleAddToCart(newItem) {
-
-    setOrderTotal(orderTotal + newItem.price)
+    setOrderTotal(orderTotal + newItem.price);
 
     const idList = cart.map((item) => item.id);
     if (!idList.includes(newItem.id)) {
@@ -28,48 +26,50 @@ const Router = () => {
       };
       setCart([...cart, freshQuantityItem]);
     } else {
-      increaseQuantity(newItem)
+      increaseQuantity(newItem);
     }
   }
 
   function increaseQuantity(updatingItem) {
     console.log(updatingItem.price);
-    setCart(cart.map(item =>{
-      if (item.id === updatingItem.id) {
-        setOrderTotal(orderTotal + updatingItem.price)
-        return {...item, quantity: item.quantity + 1}
-      } else {
-        return item
-      }
-    }))
+    setCart(
+      cart.map((item) => {
+        if (item.id === updatingItem.id) {
+          setOrderTotal(orderTotal + updatingItem.price);
+          return { ...item, quantity: item.quantity + 1 };
+        } else {
+          return item;
+        }
+      })
+    );
   }
 
   function decreaseQuantity(updatingItem) {
-    setCart(cart.map(item =>{
-      if (item.id === updatingItem.id) {
-        if (item.quantity === 1) {
-          return item;
+    setCart(
+      cart.map((item) => {
+        if (item.id === updatingItem.id) {
+          if (item.quantity === 1) {
+            return item;
+          } else {
+            setOrderTotal(orderTotal - updatingItem.price);
+            return { ...item, quantity: item.quantity - 1 };
+          }
         } else {
-          setOrderTotal(orderTotal - updatingItem.price)
-          return {...item, quantity: item.quantity - 1}
+          return item;
         }
-      } else {
-        return item
-      }
-    }))
+      })
+    );
   }
 
   function handleDelete(deleteItem) {
     console.log(deleteItem);
-    setOrderTotal(orderTotal - deleteItem.price)
+    setOrderTotal(orderTotal - deleteItem.price);
     setCart(cart.filter((item) => item.id !== deleteItem.id));
   }
 
   function submitOrder() {
-    // CHANGE THIS FROM USING AN ALERT TO A CUSTOM MODAL WITH A RANDOM NUM MADE FOR ORDER ID. Also checkout form?
-    alert(`Thank you valued custom, you order has been received`)
-    setCart([])
-    setOrderTotal(0)
+    setCart([]);
+    setOrderTotal(0);
   }
 
   const router = createBrowserRouter([
@@ -91,6 +91,8 @@ const Router = () => {
           decreaseQuantity={decreaseQuantity}
           orderTotal={orderTotal}
           submitOrder={submitOrder}
+          modalOpen = {modalOpen}
+          setModalOpen = {setModalOpen}
         />
       ),
     },

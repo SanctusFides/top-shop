@@ -2,3 +2,14 @@
   margin-left: 2rem;
 }
 
+.submitBtn {
+  background-color: #4184f3;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: none;
+  color: #fff;
+  padding: 11px 20px;
+
+}

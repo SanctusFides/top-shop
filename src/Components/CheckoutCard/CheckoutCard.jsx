@@ -1,10 +1,20 @@
+import Modal from "../Modal/Modal";
 import CheckoutCardCSS from "./CheckoutCard.module.css";
 
-export default function CheckoutCard({ id, title, price, image, quantity,handleDelete, increaseQuantity, decreaseQuantity,  }) {
-  const checkoutItem = {id: id,title: title, price: price, image: image}
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+export default function CheckoutCard({
+  id,
+  title,
+  price,
+  image,
+  quantity,
+  handleDelete,
+  increaseQuantity,
+  decreaseQuantity,
+}) {
+  const checkoutItem = { id: id, title: title, price: price, image: image };
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
     minimumFractionDigits: 2,
   });
 
@@ -18,11 +28,15 @@ export default function CheckoutCard({ id, title, price, image, quantity,handleD
       </div>
 
       <div className={CheckoutCardCSS.checkoutbtns}>
-
         <div className="quantity">
           <button onClick={() => decreaseQuantity(checkoutItem)}>-</button>
-          <input type="number" value={quantity} readOnly={true} /> 
-          <button  onClick={() => increaseQuantity(checkoutItem)}>+</button>
+          <input
+            className={CheckoutCardCSS.quantity}
+            type="number"
+            value={quantity}
+            readOnly={true}
+          />
+          <button onClick={() => increaseQuantity(checkoutItem)}>+</button>
         </div>
         <button onClick={() => handleDelete(checkoutItem)}>Delete</button>
       </div>
